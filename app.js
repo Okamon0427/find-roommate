@@ -2,35 +2,43 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
+const session = require('express-session');
+const passport = require('passport');
 
 // Use routes
 const userRoutes = require('./routes/users');
 const CustomError = require('./utils/CustomError');
+const authenticate = require('./config/passport');
+const database = require('./config/database');
 
 // Connect to database
-const dbUrl = process.env.DB_URL;
-mongoose.connect(dbUrl, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-});
+database().catch(err => next(err));
 
-// Connect to mongoose
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
-});
+// Connect to passport
+authenticate(passport);
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'));
 app.use(methodOverride("_method"));
+
+// Config session
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  // res.locals.currentUser = req.user;
+  next();
+});
 
 // Routing
 app.use('/', userRoutes);
