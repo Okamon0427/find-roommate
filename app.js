@@ -1,6 +1,10 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const methodOverride = require("method-override");
+const bodyParser = require("body-parser");
 
 // Connect to database
 const dbUrl = process.env.DB_URL;
@@ -19,9 +23,14 @@ db.once("open", () => {
 });
 
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
+app.use(methodOverride("_method"));
+
+app.get('/', (req, res) => {
+  res.render('landing');
+});
 
 // Connect to port
 const port = process.env.PORT || 3000;
