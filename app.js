@@ -1,10 +1,13 @@
+// Use npm packages
 require('dotenv').config();
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
+
+// Use routes
+const userRoutes = require('./routes/users');
 
 // Connect to database
 const dbUrl = process.env.DB_URL;
@@ -31,6 +34,8 @@ app.use(methodOverride("_method"));
 app.get('/', (req, res) => {
   res.render('landing');
 });
+
+app.use('/', userRoutes);
 
 // Connect to port
 const port = process.env.PORT || 3000;
