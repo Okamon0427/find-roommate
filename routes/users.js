@@ -4,7 +4,9 @@ const {
   landing,
   signupPage,
   loginPage,
-  logout
+  logout,
+  account,
+  search
 } = require('../controllers/users');
 
 const router = express.Router();
@@ -15,5 +17,7 @@ router.get('/signup', signupPage);
 router.get('/login', loginPage);
 // router.post('/login', login);
 router.get('/logout', logout);
+router.get('/:id', account);
+router.get('/:id/search', search);
 
 module.exports = router;
