@@ -8,7 +8,8 @@ const {
   login,
   logout,
   account,
-  search
+  search,
+  chat
 } = require('../controllers/users');
 
 const router = express.Router();
@@ -21,5 +22,6 @@ router.post('/login', login);
 router.get('/logout', logout);
 router.get('/:id', account);
 router.get('/:id/search', search);
+router.get('/:id/chat', chat);
 
 module.exports = router;

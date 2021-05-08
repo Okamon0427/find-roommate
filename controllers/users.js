@@ -95,3 +95,12 @@ exports.search = async (req, res, next) => {
     return next(error);
   }
 };
+
+exports.chat = async (req, res, next) => {
+  try {
+    res.render('chat');
+  } catch (err) {
+    const error = new CustomError('Something went wrong', 500);
+    return next(error);
+  }
+};

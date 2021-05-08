@@ -1,0 +1,24 @@
+.fakeimg {
+  height: 200px;
+  background: #aaa;
+}
+
+.textCircle {
+  display: table-cell;
+  height: 150px;
+  /*change this and the width for the size of your initial circle*/
+  width: 150px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  /*make it pretty*/
+  background: pink;
+  color: #fff;
+  font: 18px "josefin sans", arial;
+  /*change this for font-size and font-family*/
+}
+
+.main{
+  height: 780px;
+  padding-top: 10px;
+}

@@ -1,22 +1,29 @@
 <%- include("./partials/header") %>
-<p>Sign up Page</p>
-<form action="/signup" method="POST" novalidate>
-  <div>
-    <label for="firstName">First Name</label>
-    <input type="text" id="firstName" name="firstName" required>
-  </div>
-  <div>
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" name="lastName" required>
-  </div>
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  <button>Sign up</button>
-</form>
+<!-- Body of the page is here -->
+<div class="container"> 
+  <div class="main">
+    <div class="align-middle" style="padding-top: 200px;">
+      <div class="form-row">
+        <h2>Sign up for free account</h2>
+      </div>
+      <form action="/signup" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First name">
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last name">
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email address">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Create password">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>      
+  </div> <!--class="main"-->
+</div><!--class="container"-->
 <%- include("./partials/footer") %>
