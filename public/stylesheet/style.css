@@ -22,3 +22,11 @@
   height: 780px;
   padding-top: 10px;
 }
+
+.navbar-brand {
+  background: url("/images/Roommate_2.JPG") no-repeat left center;
+  background-size: contain;
+  padding: 0;
+  height: 50px;
+  width: 50px;
+}
