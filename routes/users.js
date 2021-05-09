@@ -1,5 +1,4 @@
 const express = require('express');
-
 const {
   landing,
   signupPage,
@@ -11,7 +10,7 @@ const {
   search,
   chat
 } = require('../controllers/users');
-
+const { isLoggedIn } = require('../middleware/auth');
 const router = express.Router();
 
 router.get('/', landing);
@@ -20,8 +19,8 @@ router.post('/signup', signup);
 router.get('/login', loginPage);
 router.post('/login', login);
 router.get('/logout', logout);
-router.get('/:id', account);
-router.get('/:id/search', search);
-router.get('/:id/chat', chat);
+router.get('/account', isLoggedIn, account);
+router.get('/search', isLoggedIn, search);
+router.get('/chat', isLoggedIn, chat);
 
 module.exports = router;

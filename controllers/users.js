@@ -12,29 +12,13 @@ exports.signupPage = (req, res, next) => {
 };
 
 exports.signup = async (req, res, next) => {
-  const { firstName, lastName, email, password, confirmPassword } = req.body;
-
-  const renderObject = {
-    firstName,
-    lastName,
-    email,
-    password
-  }
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     const existingUserEmail = await User.findOne({ email });
-
-    // if (existingUserEmail) {
-    //   return res.status(401).render('signupPage', {
-    //     ...renderObject,
-    //   });
-    // }
-
-    // if (password !== confirmPassword) {
-    //   return res.status(401).render('signupPage', {
-    //     ...renderObject,
-    //   });
-    // }
+    if (existingUserEmail) {
+      return res.status(401).render('signup');
+    }
 
     const hashedPassword = await bcrypt.hash(password, 12);
     
@@ -71,16 +55,15 @@ exports.login = (req, res, next) => {
 
 exports.logout = (req, res, next) => {
   req.logout();
-  res.redirect('/landing');
+  res.redirect('/');
 };
 
 exports.account = async (req, res, next) => {
   try {
-    // const user = await User.findById(req.params.id);
-    // res.render('account', {
-    //   user
-    // });
-    res.render('account');
+    const user = await User.findById(req.user);
+    res.render('account', {
+      user
+    });
   } catch (err) {
     const error = new CustomError('Something went wrong', 500);
     return next(error);

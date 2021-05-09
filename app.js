@@ -1,4 +1,4 @@
-// Use npm packages
+// Requires
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -6,9 +6,7 @@ const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const session = require('express-session');
 const passport = require('passport');
-
-// Use routes
-const userRoutes = require('./routes/users');
+const routes = require('./routes/users');
 const CustomError = require('./utils/CustomError');
 const authenticate = require('./config/passport');
 const database = require('./config/database');
@@ -36,19 +34,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  // res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   next();
 });
 
 // Routing
-app.use('/', userRoutes);
+app.use('/', routes);
 
-// Error Handling
+// Route Error
 app.use((req, res, next) => {
   const error = new CustomError('Could not find this route.', 404);
   next(error);
 });
 
+// Error Handling
 app.use((error, req, res, next) => {
   const status = error.statusCode || 500
   const message = error.message || 'Something went wrong';
