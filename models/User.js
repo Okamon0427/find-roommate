@@ -13,7 +13,9 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  age: Number,
+  phone: String,
+  preference: String,
+  budget: Number,
   gender: {
     type: String,
     enum: [
@@ -22,7 +24,15 @@ const UserSchema = new Schema({
       'Other',
     ]
   },
-  budget: Number,
+  location: String,
+  isSharedBathroom: {
+    type: Boolean,
+    default: false
+  },
+  isHavingPets: {
+    type: Boolean,
+    default: false
+  },
   isSmoking: {
     type: Boolean,
     default: false
