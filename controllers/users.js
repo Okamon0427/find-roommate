@@ -72,6 +72,11 @@ exports.account = async (req, res, next) => {
 
 exports.search = async (req, res, next) => {
   try {
+    // let result = null;
+    // if(req.query.search) {
+    //   result = req.query.search;
+    // }
+    // res.render('search', { result });
     res.render('search');
   } catch (err) {
     const error = new CustomError('Something went wrong', 500);
