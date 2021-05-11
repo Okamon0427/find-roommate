@@ -38,10 +38,10 @@ Roommate squared is a website that connects you with other people looking for ro
 - [Figma](https://www.figma.com/proto/TT5gzaduqRwYoZ1ZOSzO12/TOHACKS-RoommatesSquared?node-id=1%3A2&scaling=scale-down&page-id=0%3A1)
 
 ## Author
-Sanindie Silva - Prototype
-Hoa Nguyen - Front End
-Vinaya Sharma - Database, Design
-Takuto Okamoto - Back End
+Sanindie Silva - Prototype  
+Hoa Nguyen - Front End  
+Vinaya Sharma - Database, Design  
+Takuto Okamoto - Back End  
 (Team in the TOHacks 2021)
 https://www.tohacks.ca/
 
